@@ -1,33 +1,51 @@
+//selectors
 const todoInput = document.querySelector(".todo-input") //input
 const todoButton = document.querySelector(".todo-button") //button
-const todoList = document.querySelector(".todo-list")//ul
+const todoList = document.querySelector(".todo-list") //ul
 
-/* functions */
-
-const addTodo = (event)=> {
+//functions
+const addTodo = (event) => {
     //prevent form from submitting
     event.preventDefault()
-    /* create toDoDiv */
-const toDoDiv = documnet.createElement("div")
-todoDiv.classList.add("toDoDiv")
-const newTodo = document.createElement("li")
-newTodo.innerText = todoInput.value;
-todoDiv.appendChild(newTodo)
-//create complete button
-const CompletedButton = document.createElement("button")
-completedButton.innerHTML = "<i class='fas fa-plus-square'></i>"
-comleteButton.classList.add("complete-btn")
-todoDiv.appenchild(completeButton)
+    //creating todo div
+    const todoDiv = document.createElement("div")
+    todoDiv.classList.add("todoDiv")
+    //creating LI
+    const newTodo = document.createElement("li")
+    newTodo.innerText = todoInput.value;
+    newTodo.classList.add("todo-item")
+    todoDiv.appendChild(newTodo)
+    //create complete button
+    const completedButton = document.createElement("button")
+    completedButton.innerHTML = "<i class='fas fa-check'></i>"
+    completedButton.classList.add("completed-btn")
+    todoDiv.appendChild(completedButton)
+    //creating delete button
+    const deleteButton = document.createElement("button")
+    deleteButton.innerHTML = "<i class='fas fa-trash'></i>"
+    deleteButton.classList.add("delete-btn")
+    todoDiv.appendChild(deleteButton)
+    //append todoDiv to UL
+    todoList.appendChild(todoDiv)
+    todoInput.value = ""
+} 
 
-//creating delete button
-
+//creating delete and complete function
+const deleteComplete = (event) => {
+    const item = event.target;
+    //console.log(item)
+    if (item.classList.contains("delete-btn")) {
+        const todo = item.parentElement;
+        todo.classList.add("fall")
+        todo.addEventListener("transitionend", () => {
+            todo.remove()
+        })
+    } else if (item.classList.contains("completed-btn")) {
+        const todo = item.parentElement;
+        todo.classList.toggle("completed")
+    }
 }
 
-//ES5 => ES6
-
-
-
-
-
-/* event-listeners */
-todoButton.addEventListener("click",addTodo)
+//event-listeners
+todoButton.addEventListener("click", addTodo)
+todoList.addEventListener("click", deleteComplete)
