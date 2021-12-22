@@ -15,20 +15,22 @@
 body {
     font-family: "Poppins", sans-serif;
     background: linear-gradient(#A588E8, #CBBEE9);
+    color: whitesmoke;
     min-height: 100vh;
-    color: white;
 }
 
-header {
-    font-size: 1.5rem;
-}
 
 header,
 form {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 20vh
+    min-height: 20vh;
+}
+
+header {
+    font-size: 1.5rem;
+    flex-direction: column;
 }
 
 form input,
@@ -36,7 +38,7 @@ form button {
     padding: 0.5rem;
     font-size: 2rem;
     border: none;
-    background: whitesmoke;
+    background-color: whitesmoke;
 }
 
 form button {
@@ -56,16 +58,15 @@ form button:hover {
     align-items: center;
 }
 
-/* styling lists - todo items */
 .todo-list {
-    list-style: none;
     min-width: 40%;
+    list-style: none;
 }
 
 .todoDiv {
     margin: 0.5rem;
     background-color: whitesmoke;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: var(--secondary-color);
     display: flex;
     justify-content: space-between;
@@ -82,9 +83,9 @@ form button:hover {
     color: whitesmoke;
     border: none;
     padding: 1rem;
+    background-color: var(--delete-color);
     cursor: pointer;
     font-size: 1rem;
-    background-color: var(--delete-color);
 }
 
 .completed-btn {
@@ -92,7 +93,7 @@ form button:hover {
 }
 
 .todo-item {
-    padding: 0rem 0.5rem;
+    padding: 0 0.5rem;
 }
 
 .fa-trash,
@@ -121,7 +122,6 @@ select {
     cursor: pointer;
     padding: 1rem;
     font-size: 1rem;
-    background-color: whitesmoke;
 }
 
 .select {
@@ -133,14 +133,36 @@ select {
 .select::after {
     content: "\25BC";
     position: absolute;
-    top: 0;
     right: 0;
+    top: 0;
     background-color: var(--secondary-color);
     padding: 1rem;
     pointer-events: none;
+    transition: all 0.3s ease;
 }
 
 .select:hover::after {
     background-color: whitesmoke;
+    color: var(--secondary-color);
+}
+
+/* alert */
+.alert {
+    visibility: hidden;
+    margin: 5px;
+    padding: 0.5rem;
+    width: 40%;
+    text-align: center;
+}
+
+.error {
+    border: solid 1px rgba(231, 110, 225, 0.596);
+    background-color: rgba(246, 230, 247, 0.767);
+    color: var(--secondary-color);
+}
+
+.success {
+    border: solid 1px green;
+    background-color: #8dc8ceb2;
     color: var(--secondary-color);
 }
